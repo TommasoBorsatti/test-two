@@ -12,5 +12,5 @@ npm-debug.log
 yarn-error.log
 /public/js
 /public/css
-package.json
-
+package-lock.json
+webpack.mix.js
