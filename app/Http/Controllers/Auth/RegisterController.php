@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -59,6 +61,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        return view('auth.register', compact('categories'));
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -67,13 +74,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'p_iva' => $data['p_iva'],
-            'restaurant' => $data['restaurant'],
-            'address' => $data['address']
-        ]);
+        
+        $newUser = new User();
+        $newUser->name =  $data['name'];    
+        $newUser->email = $data['email'];
+        $newUser->password = Hash::make($data['password']);
+        $newUser->p_iva = $data['p_iva'];
+        $newUser->restaurant = $data['restaurant'];
+        $newUser->address = $data['address'];
+        $newUser->save();
+
+        $newUser->categories()->attach($data['categories']);
+
+        return $newUser;
+        
+
     }
 }

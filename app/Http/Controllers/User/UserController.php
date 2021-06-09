@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Plate;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+
+        $user = User::where('id', $user_id)->first();
+        
+        return view('user.index', compact('user'));
     }
 
     /**
@@ -60,8 +65,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $plate = Plate::where('id', $id)->first();
+        return view('user.show', compact('plate'));
     }
 
     /**

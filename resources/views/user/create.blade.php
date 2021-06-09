@@ -27,7 +27,7 @@
 		<input class="form-check-input" type="checkbox" id="available" name="available">
 		<label class="form-check-label" for="available">Disponibilità</label>
 	</div>
-	<div class="mt-3">
+	{{-- <div class="mt-3">
 		<h3>Tags</h3>
 		@foreach ($categories as $category)
 			<div class="form-check">
@@ -37,7 +37,7 @@
 				</label>
 			</div>
 		@endforeach
-	</div>
+	</div> --}}
 	<div class="mt-3">
 		<button type="submit" class="btn btn-primary">Crea</button>
 	</div>
