@@ -16,6 +16,7 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <a href="{{ route('users.create') }}">Aggiungi piatto</a>
             </div>
         </div>
     </div>
