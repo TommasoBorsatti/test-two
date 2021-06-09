@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+    @if (session('message'))
+    <div class="alert alert-success" style="position: fixed; bottom: 30px; right: 30px">
+        {{ session('message') }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+    </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

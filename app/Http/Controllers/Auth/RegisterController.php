@@ -51,13 +51,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'p_iva' => ['required','numeric'],
             'restaurant' => ['required', 'string', 'max:75'],
-            'address' => ['required', 'string', 'max:125']
+            'address' => ['required', 'string', 'max:125'],
+            'categories' => ['required']
         ]);
     }
 
@@ -74,7 +76,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+
+
         $newUser = new User();
         $newUser->name =  $data['name'];    
         $newUser->email = $data['email'];
@@ -87,6 +90,9 @@ class RegisterController extends Controller
         $newUser->categories()->attach($data['categories']);
 
         return $newUser;
+        // } else{
+        //     return view('auth.register', compact('categories'));
+        // }
         
 
     }
